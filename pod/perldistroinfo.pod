@@ -1,13 +1,15 @@
 =head1 NAME
 
-perldistinfo - Collection of information about how various avenues of C<perl> track upstream development
-for eventual inclusion into their systems.
+perldistinfo - Collection of information about how various avenues of
+C<perl> track upstream development for eventual inclusion into their
+systems.
 
 =head1 Debian
 
 I<RC releases are typically the first time that Debian integrates the new
 changes for testing. We upload RCs to the 'experimental' distribution and
-use that to perform widespread rebuild testing against the Debian archive.> [1]
+use that to perform widespread rebuild testing against the Debian archive.>
+[1]
 
 L<https://buildd.debian.org/status/package.php?p=perl&suite=sid>
 
@@ -17,16 +19,53 @@ Includes a specific version of C<perl> with each release:
 
 L<https://man.openbsd.org/perl>
 
-More information on the build and development process as it relates to the included
-version of C<perl> is needed.
+More information on the build and development process as it relates to
+the included version of C<perl> is needed.
 
-=head1 FreeBSD
+=head1 FreeBSD (Ports)
 
-FreeBSD maintains several versions of upstream C<perl> in its ports system. C<perl> was
-included in the base OS until version 4.xx (confirm+ref needed).
+FreeBSD maintains several versions of upstream C<perl> in its Ports
+system. C<perl> was included in the base OS until version 4.xx (confirm+ref
+needed).
 
-It disambiguages the varous versions of C<perl> through the use of a symlink C</usr/local/bin/perl>
-that points to a I<versioned> binary.
+It disambiguages the varous versions of C<perl> through the use of a
+symlink C</usr/local/bin/perl> that points to a I<versioned> binary.
+
+FreeBSD Ports tracks the latest upstream C<perl> development release in
+the very closely in the C<perl-devel> port, and for a diverse
+set of architectures for each of its supported OS versions. It represents
+by far the most sophisticated tracking of available C<perl>s by any
+environment.
+
+L<https://svnweb.freebsd.org/ports/head/lang/perl5-devel/>
+
+and the latest releases of the last three major versions [2]. For example,
+at the time of this writing, the latest major release of C<perl> is vesion
+I<5.32>, which is available in the C<perl-5.32> port.
+
+L<https://www.freshports.org/lang/perl5.32/>
+
+Similar, there are ports for C<perl-5.30> and C<perl-5.28>.
+
+=head2 Version Management
+
+This section is here only to further describe how FreeBSD manages different
+C<perl> versions, it is not meant to be a detailed description.
+
+The I<default perl> is managed via symbolic link, and the general approach
+can be see by looking at a port's C<Makefile>, in this case the one for
+C<perl-devel>:
+
+L<https://svnweb.freebsd.org/ports/head/lang/perl5-devel/Makefile?view=markup>
+
+Generally, C<perl> is installed into C</usr/local/bin/perl${PERL_VERSION}>,
+then C<ln -sf>'d to C</usr/local/bin/perl>. C<libperl.so> is managed in
+a similar way.
+
+=head2 Other Languages
+
+FreeBSD handles other languages in much the same way, but it's important to
+note that it treats C<python2> and C<python3> as totally separate entities [3].
 
 =head1 NetBSD AND pkgsrc
 
@@ -46,10 +85,14 @@ that points to a I<versioned> binary.
 
 =head1
 
-=head1 SEE ALSO AND REFERENCES
+=head1 SEE ALSO
 
 =over 4
 
 =item 1. L<https://www.nntp.perl.org/group/perl.perl5.porters/2021/05/msg260006.html>
+
+=item 2. L<https://svnweb.freebsd.org/ports/head/lang>
+
+=item 3. L<https://svnweb.freebsd.org/ports/head/lang/python3>
 
 =back
