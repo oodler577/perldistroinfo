@@ -1,1 +1,13 @@
-in progress..
+=head1
+
+=head1 Debian
+
+L<https://buildd.debian.org/status/package.php?p=perl&suite=sid>
+
+I<RC releases are typically the first time that Debian integrates the new
+changes for testing. We upload RCs to the 'experimental' distribution and
+use that to perform widespread rebuild testing against the Debian archive.>
+
+Reference:
+
+L<https://www.nntp.perl.org/group/perl.perl5.porters/2021/05/msg260006.html>
