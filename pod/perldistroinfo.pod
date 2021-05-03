@@ -1,4 +1,7 @@
-=head1
+=head1 NAME
+
+perldistinfo - Collection of information about how various avenues of C<perl> track upstream development
+for eventual inclusion into their systems.
 
 =head1 Debian
 
