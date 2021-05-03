@@ -20,6 +20,32 @@ L<https://man.openbsd.org/perl>
 More information on the build and development process as it relates to the included
 version of C<perl> is needed.
 
+=head1 FreeBSD
+
+FreeBSD maintains several versions of upstream C<perl> in its ports system. C<perl> was
+included in the base OS until version 4.xx (confirm+ref needed).
+
+It disambiguages the varous versions of C<perl> through the use of a symlink C</usr/local/bin/perl>
+that points to a I<versioned> binary.
+
+=head1 NetBSD AND pkgsrc
+
+=head1 Windows
+
+=head2 Strawberry Perl
+
+=head2 Cygwin
+
+=head2 Chocolatey
+
+=head1 MaxOS X
+
+=head2 base OS
+
+=head2 Homebrew
+
+=head1
+
 =head1 SEE ALSO AND REFERENCES
 
 =over 4
