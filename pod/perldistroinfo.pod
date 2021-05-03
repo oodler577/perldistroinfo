@@ -14,3 +14,12 @@ use that to perform widespread rebuild testing against the Debian archive.>
 Reference:
 
 L<https://www.nntp.perl.org/group/perl.perl5.porters/2021/05/msg260006.html>
+
+=head1 OpenBSD
+
+Includes a specific version of C<perl> with each release:
+
+L<https://man.openbsd.org/perl>
+
+More information on the build and development process as it relates to the included
+version of C<perl> is needed.
