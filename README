@@ -3,3 +3,23 @@ your platform/package system of choice as your inherent knowledge
 or time to research permits.
 
 This is a "best effort" and all contributions are appreciated.
+
+Project Goals:
+
+- obtain sufficient coverage in order to provide benefit to upstream
+perl porters, developers, and system integrators so that decisions
+about upstream perl release processes may be made with as much information
+as possible
+
+- eventually provide this document via CPAN, or if deemed worth, into
+the base set of core perl docs itself
+
+Contributor Pool:
+
+- users knowledgable about a particular platform or environment
+
+- system package maintainers, themselves
+
+- individuals interested in contributing to a worthy endeavor for the
+long term benefit of perl
+
