@@ -6,9 +6,9 @@ systems.
 
 =head1 Debian
 
-I<RC releases are typically the first time that Debian integrates the new
+I<RC> releases are typically the first time that Debian integrates the new
 changes for testing. We upload RCs to the 'experimental' distribution and
-use that to perform widespread rebuild testing against the Debian archive.>
+use that to perform widespread rebuild testing against the Debian archive.
 [1]
 
 L<https://buildd.debian.org/status/package.php?p=perl&suite=sid>
@@ -19,8 +19,8 @@ Includes a specific version of C<perl> with each release:
 
 L<https://man.openbsd.org/perl>
 
-More information on the build and development process as it relates to
-the included version of C<perl> is needed.
+See L<perlopenbsdinfo> contains a very detailed account of how OpenBSD tracks
+upstream C<perl> releases with respect to their own release process.
 
 =head1 FreeBSD (Ports)
 

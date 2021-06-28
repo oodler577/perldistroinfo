@@ -1,0 +1,141 @@
+=head1 NAME
+
+perlopenbsdinfo - A rather detailed account of how OpenBSD deals with
+upstream perl development and release cycles.
+
+=head1 BACKGROUND
+
+A little background on OpenBSD's release process.  There is a new release
+every six months, approximately every May and October, with security and
+stability patches  backported to that version for the previous two releases
+(which works out to just about one year).  This is relatively similar to perl
+which backports fixes to the previous two releases, although in perl that is
+two years and they distribute a new subversion release with those fixes.
+
+L<http://www.openbsd.org/faq/faq5.html#Flavors>
+
+There are no "minor" OpenBSD releases, they are all major releases with the
+ability to break backwards compatibility as needed.  Although enough
+compatibility to make upgrading from the previous release is a priority.
+Fixes to releases are distributed as commits to the release branch, signed
+patches, and signed binary patches.
+
+L<http://www.openbsd.org/faq/faq10.html#Patches>
+
+New versions of Perl, as with all changes to OpenBSD, are committed to the
+HEAD default branch in cvs which gets built frequently (often daily or more
+for fast architectures and less frequently for slower and less easily
+available platforms).  All OpenBSD developers will run -current or snapshots
+to do development on and many other people run it for testing and to get the
+cool new stuff.  Breaking the tree is a significant event that does happen,
+but people try very hard to avoid.  They also try to make sure the tree is
+stable at all times, when large changes are committed there is often some
+fallout, but installing an unstable snapshot is definitely a surprise that I
+have not experienced very frequently.
+
+The main rule for commits to the OpenBSD tree is that each commit should make
+OpenBSD better.  Breaking something or reducing stability is not considered
+making things better.
+
+Due to the ability to break backwards compatibility at pretty much any time,
+we don't have to worry so much about adding features that don't work out.
+They can be removed and they will be unsupported in a year (if they make it
+into a release), or changed in an incompatible way with just documentation
+explaining how to upgrade.  Because of this, it is much easier to add
+experimental features than it is in perl where you have to maintain backwards
+compatibility for any "released" features for a very long time.
+
+Theo has given a few talks about the OpenBSD release process, but generally
+it's a cycle of:
+
+=over 4
+
+=item * Release
+
+=item * Development
+
+=item * Slowdown
+
+=item * Lock for release
+
+=item * Final release testing
+
+=item * Release
+
+=back
+
+However, during Development, people are actively using the current code and
+regressions are generally found pretty quickly.  During Slowdown people will
+also have more time away from Development to update some less used machines
+and find other issues.
+
+L<https://www.openbsd.org/papers/asiabsdcon2009-release_engineering/>
+
+=head2 What version of C<perl> goes into an OpenBSD release
+
+Whatever I have time to work on and get tested.  I do rely heavily on
+upstream keeping things working well between releases as the OpenBSD team is
+fairly small and although there are several other people who like C<perl>,
+everyone is pretty busy.
+
+Usually it ends up that I will start updating patches a bit after an X.Y.0
+comes out and be ready for testing and import when an X.Y.1 release comes
+out.
+
+Some of this is due to timing as the Perl I<[sic]> release schedule and the
+OpenBSD release schedule mean a new Perl I<[sic]> X.Y.0 is ready about the
+same time as OpenBSD is locked for the spring release and then I generally
+don't have time to get our local patches updated in time for serious testing
+before the Fall release, but I'm usually testing during that time and sending
+requests for testing to the tech@ mailing list.
+
+A Perl I<[sic]> X.Y.1 release is often committed shortly after the fall
+OpenBSD release.  Sometimes the perldelta makes me take extra time testing
+things though, so it may slip.
+
+I will often do an update to an X.Y.2 or X.Y.3 in between as I'm a lot more
+sure that won't break anything and I don't wait as long for folks to test.
+That does also depend on what C<perldelta> says.
+
+As you can see from the commit history, I missed 5.22 and 5.26 due to life
+getting in the way, and for some reason 5.32 took me a while to get in, but
+there were a few .Z releases imported too.
+
+L<https://github.com/openbsd/src/commits/master/gnu/usr.bin/perl/patchlevel.h>
+
+As I've improved my scripts for importing a new perl version it has gotten
+more likely that I'll import a .Z release, and if I can ever make the time to
+do a bit more cleanup and upstreaming of our local patches it will get even
+easier for me to get in a "major" release.
+
+With more free time I might work on keeping things updated for C<perl>
+development releases, but I'd need to set up automation and smoke testing and
+unless I suddenly become independently wealthy and can stop working and
+contribute a lot more time to open source, that is unlikely to ever happen.
+
+=head2 How are C<perl> versions updated after an major version of OpenBSD has
+been released
+
+Security patches will be applied to the most recent two releases, it is
+unlikely I would backport an entire dot release, especially as an extra
+C<perldelt>a and that would be a bit surprising to folks.
+
+So, it's backporting a patch which becomes an errata and you get it one of
+the three ways I described above.
+
+For example errata 007 from OpenBSD 6.7:
+
+L<https://www.openbsd.org/errata67.html>
+
+Usually these are things that the pumpking or someone mails me about early
+while the bug is still under embargo, although if something makes it into a
+release and is marked as "security" I'd probably look at picking it up.  I
+probably wouldn't catch it in a commit message or anything though.
+
+=head1 AUTHOR
+
+Most of this content is directly from the current Perl maintainer for the
+OpenBSD project, Andrew Fresh.
+
+The information was originally solicited and added to this document by OODLER
+577 <oodler@cpan.org>.
